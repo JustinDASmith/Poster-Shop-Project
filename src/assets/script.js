@@ -50,14 +50,26 @@ function addProductToCart(productId) {
 
 // Function to increase the quantity of a product in the cart
 function increaseQuantity(productId) {
-  const cartItem = cart.find((item) => item.productId === productId);
   const product = products.find((item) => item.productId === productId);
 
-  if (cartItem && product.quantity > cartItem.quantity) {
-    cartItem.quantity += 1;
-    updateProductQuantity(productId); // Update the product quantity in the HTML
-    updateCartUI(); // Update the cart UI after increasing the quantity
+  if (product) {
+    const cartItem = cart.find((item) => item.productId === productId);
+
+    if (cartItem) {
+      cartItem.quantity += 1;
+    } else {
+      // If the product is not in the cart, add it with quantity 1
+      cart.push({
+        productId: product.productId,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+      });
+    }
   }
+
+  updateProductQuantity(productId); // Update the product quantity in the HTML
+  updateCartUI(); // Update the cart UI after increasing the quantity
 }
 
 // Function to decrease the quantity of a product in the cart
@@ -65,11 +77,12 @@ function decreaseQuantity(productId) {
   const cartItem = cart.find((item) => item.productId === productId);
 
   if (cartItem) {
-    if (cartItem.quantity > 1) {
+    if (cartItem.quantity > 0) {
       cartItem.quantity -= 1;
     } else {
       removeProductFromCart(productId);
     }
+
     updateProductQuantity(productId); // Update the product quantity in the HTML
     updateCartUI(); // Update the cart UI after decreasing the quantity or removing the item
   }
@@ -78,7 +91,6 @@ function decreaseQuantity(productId) {
 // Function to remove a product from the cart
 function removeProductFromCart(productId) {
   cart = cart.filter((item) => item.productId !== productId);
-  updateProductQuantity(productId); // Update the product quantity in the HTML
   updateCartUI(); // Update the cart UI after removing the product
 }
 
@@ -143,3 +155,4 @@ module.exports = {
   cartTotal,
   pay: handlePayment, // Export handlePayment as pay
 };
+
