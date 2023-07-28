@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poster Shop</title>
+  <link rel="stylesheet" href="../src/assets/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Poster Shop</h1>
+  </header>
+
+  <main>
+    <section class="products">
+      <h2>Posters</h2>
+      <ul>
+        <li data-product-id="1">
+          <img src="../src/images/product1.jpg" alt="Cityscape Portrait">
+          <h3>Urban Madness</h3>
+          <p>Price: $9.99</p>
+          <div class="quantity-controls">
+            <button class="decrease-btn" onclick="decreaseQuantity(1)">-</button>
+            <span class="quantity" id="quantity-1">0</span>
+            <button class="increase-btn" onclick="increaseQuantity(1)">+</button>
+          </div>
+          <button class="add-to-cart-btn" onclick="addProductToCart(1)">Add to Cart</button>
+        </li>
+        <li data-product-id="2">
+          <img src="../src/images/product2.jpg" alt="Nature Portrait">
+          <h3>Anywhere USA</h3>
+          <p>Price: $9.99</p>
+          <div class="quantity-controls">
+            <button class="decrease-btn" onclick="decreaseQuantity(2)">-</button>
+            <span class="quantity" id="quantity-2">0</span>
+            <button class="increase-btn" onclick="increaseQuantity(2)">+</button>
+          </div>
+          <button class="add-to-cart-btn" onclick="addProductToCart(2)">Add to Cart</button>
+        </li>
+        <li data-product-id="3">
+          <img src="../src/images/product3.jpg" alt="Abstract Portrait">
+          <h3>Zen Valley</h3>
+          <p>Price: $8.99</p>
+          <div class="quantity-controls">
+            <button class="decrease-btn" onclick="decreaseQuantity(3)">-</button>
+            <span class="quantity" id="quantity-3">0</span>
+            <button class="increase-btn" onclick="increaseQuantity(3)">+</button>
+          </div>
+          <button class="add-to-cart-btn" onclick="addProductToCart(3)">Add to Cart</button>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cart">
+      <h2>Shopping Cart</h2>
+      <ul id="cart-list">
+        <!-- Cart items will be dynamically added here -->
+      </ul>
+      <p>Total: $<span id="cart-total">0.00</span></p>
+      <div>
+        <label for="amount">Enter Amount:</label>
+        <input type="number" id="amount">
+        <button onclick="handlePayment()">Pay</button>
+      </div>
+      <p>Remaining Balance: $<span id="remaining-balance">0.00</span></p>
+      <button onclick="clearCart()">Clear Cart</button>
+    </section>
+  </main>
+  <script src="../src/assets/front.js"></script>
+  <script src="../src/assets/script.js"></script>
+</body>
+</html>
