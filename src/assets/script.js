@@ -4,22 +4,22 @@ const products = [
     productId: 1,
     name: "Urban Madness",
     price: 9.99,
-    quantity: 5, // Set initial quantity for testing purposes
-    image: "../src/images/product1.jpg",
+    quantity: 0,
+    image: "src/images/product1.jpg",
   },
   {
     productId: 2,
     name: "Anywhere USA",
     price: 9.99,
-    quantity: 3, // Set initial quantity for testing purposes
-    image: "../src/images/product2.jpg",
+    quantity: 0,
+    image: "src/images/product2.jpg",
   },
   {
     productId: 3,
     name: "Zen Valley",
     price: 8.99,
-    quantity: 2, // Set initial quantity for testing purposes
-    image: "../src/images/product3.jpg",
+    quantity: 0,
+    image: "src/images/product3.jpg",
   },
 ];
 
@@ -53,14 +53,11 @@ function increaseQuantity(productId) {
   const cartItem = cart.find((item) => item.productId === productId);
   const product = products.find((item) => item.productId === productId);
 
-  if (cartItem && product) {
-    if (product.quantity > cartItem.quantity) {
-      cartItem.quantity += 1;
-    }
+  if (cartItem && product.quantity > cartItem.quantity) {
+    cartItem.quantity += 1;
+    updateProductQuantity(productId); // Update the product quantity in the HTML
+    updateCartUI(); // Update the cart UI after increasing the quantity
   }
-
-  updateProductQuantity(productId); // Update the product quantity in the HTML
-  updateCartUI(); // Update the cart UI after increasing the quantity
 }
 
 // Function to decrease the quantity of a product in the cart
@@ -73,16 +70,14 @@ function decreaseQuantity(productId) {
     } else {
       removeProductFromCart(productId);
     }
+    updateProductQuantity(productId); // Update the product quantity in the HTML
+    updateCartUI(); // Update the cart UI after decreasing the quantity or removing the item
   }
-
-  updateProductQuantity(productId); // Update the product quantity in the HTML
-  updateCartUI(); // Update the cart UI after decreasing the quantity or removing the item
 }
 
 // Function to remove a product from the cart
 function removeProductFromCart(productId) {
   cart = cart.filter((item) => item.productId !== productId);
-
   updateProductQuantity(productId); // Update the product quantity in the HTML
   updateCartUI(); // Update the cart UI after removing the product
 }
