@@ -6,8 +6,8 @@
     "start": "serve",
     "test": "test"
   },
-  "author": "Your Name",
-  "license": "MIT",
+  "author": "Justin Smith",
+  "license": "",
   "devDependencies": {
     "jest": "^27.0.6",
     "jest-environment-jsdom": "^1.7.4"
